@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Etch-a-Sketch</title>
     <style>
         #container {
             display: flex;
@@ -17,6 +17,7 @@
 </head>
 <body>
     <button id="start">SET GRID</button>
+    <button id="clear">CLEAR</button>
     <div id="container">
     </div>
     <script>
@@ -53,11 +54,18 @@
         const start = document.querySelector('#start');
 
         start.addEventListener('click', () => {
-
             const userNum = prompt("Enter the number of squares per side:");
-
             setGrid(userNum);
+        });
 
+        const clear = document.querySelector('#clear');
+
+        clear.addEventListener('click', () => {
+            const grid = document.querySelectorAll('.grid-item');
+
+            grid.forEach((square) => {
+                square.style.backgroundColor = 'white';
+            });
         });
 
         
