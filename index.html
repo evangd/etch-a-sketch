@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 600px;
+            margin: auto;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <button id="start">SET GRID</button>
+    <div id="container">
+    </div>
+    <script>
+        function setGrid(numSquares) {
+
+            const gridSize = Math.min(numSquares, 100);
+            const squareHW = 600 / gridSize;
+
+            const cont = document.querySelector('#container');
+            cont.replaceChildren();
+            for (let i = 0; i < gridSize**2; ++i) {
+            
+                const newDiv = document.createElement('div');
+                newDiv.className = 'grid-item';
+                newDiv.style.height = squareHW + 'px';
+                newDiv.style.width = squareHW + 'px';
+                cont.appendChild(newDiv);
+            
+            }
+
+            const grid = document.querySelectorAll('.grid-item');
+
+            grid.forEach((square) => {
+
+                square.addEventListener('mouseover', function (e) {
+                    e.target.style.backgroundColor = 
+                        `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+                });
+
+            });
+
+        }
+
+        const start = document.querySelector('#start');
+
+        start.addEventListener('click', () => {
+
+            const userNum = prompt("Enter the number of squares per side:");
+
+            setGrid(userNum);
+
+        });
+
+        
+    </script>
+</body>
+</html>
